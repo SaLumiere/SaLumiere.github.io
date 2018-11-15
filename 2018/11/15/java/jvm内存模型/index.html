@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jvm内存模型 ​    JVM内存模型 Java代码是运行在Java虚拟机(JVM)上的，Java虚拟机通过解释执行（解释器）或编译执行（编译器）来完成。 Java内存模型分为5个部分：方法区（Method Area），Java堆（Heap），Java栈（VM Stack），本地方法栈（Native Method Stack），程序计数器（PC 寄存器） （图片来源：http://gityua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/11/15/java/jvm内存模型/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="jvm内存模型 ​    JVM内存模型 Java代码是运行在Java虚拟机(JVM)上的，Java虚拟机通过解释执行（解释器）或编译执行（编译器）来完成。 Java内存模型分为5个部分：方法区（Method Area），Java堆（Heap），Java栈（VM Stack），本地方法栈（Native Method Stack），程序计数器（PC 寄存器） （图片来源：http://gityua">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://gityuan.com/images/jvm/jvm_memory_1.png">
+<meta property="og:updated_time" content="2018-11-13T10:49:32.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="jvm内存模型 ​    JVM内存模型 Java代码是运行在Java虚拟机(JVM)上的，Java虚拟机通过解释执行（解释器）或编译执行（编译器）来完成。 Java内存模型分为5个部分：方法区（Method Area），Java堆（Heap），Java栈（VM Stack），本地方法栈（Native Method Stack），程序计数器（PC 寄存器） （图片来源：http://gityua">
+<meta name="twitter:image" content="http://gityuan.com/images/jvm/jvm_memory_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java/jvm内存模型" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/java/jvm内存模型/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.530Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>jvm内存模型</p>
+<p>​    JVM内存模型</p>
+<p>Java代码是运行在Java虚拟机(JVM)上的，Java虚拟机通过解释执行（解释器）或编译执行（编译器）来完成。</p>
+<p>Java内存模型分为5个部分：方法区（Method Area），Java堆（Heap），Java栈（VM Stack），本地方法栈（Native Method Stack），程序计数器（PC 寄存器）</p>
+<p><img src="http://gityuan.com/images/jvm/jvm_memory_1.png" alt="img">（图片来源：<a href="http://gityuan.com/images/jvm/jvm_memory_1.png）" target="_blank" rel="noopener">http://gityuan.com/images/jvm/jvm_memory_1.png）</a></p>
+<p>线程共享区：</p>
+<p>方法区（Method Area）：方法区是各个线程共享的区域，存放类信息，常量，静态常量，编译器编译后的代码等信息。</p>
+<p>Java堆（Heap）：Java堆也是线程共享区域，类的实例存放在这里，一个系统会产生很多Java实例，因此Java堆的空间是最大的，如果Java堆的空间不足，就会抛出OutOfMemoryError异常。</p>
+<p>线程私有区：</p>
+<p>Java栈（VM Stack）：线程私有区域，生命周期与线程相同，一个线程对应一个Java栈，每执行一个方法就会向栈里压一个元素，这个元素叫“栈帧”，栈帧中包含了方法中保存了该方法调用的参数、局部变量和返回地址等信息，如果栈空间不足了就会抛出StackOverflowError异常。</p>
+<p>本地方法栈（Native Method Stack）：和Java栈类似，本地方法栈是用来执行本地方法的，存放的方法调用本地方法接口，最终调用本地方法库，实现与操作系统，硬件交互的目的。</p>
+<p>程序计数器：这里对应的类以及加载，实例对象，方法，静态变量去了该去的地方，那么问题来了，程序该怎么执行，哪个方法先执行，哪个方法后执行，这些指令执行的顺序就是PC寄存器在管，它的作用就是控制程序指令的执行顺序。</p>
+</li>
+<li><p>类加载过程</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/java/jvm内存模型/" data-id="cjoi4p7fc000bgktqci7g4df7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/15/node/HEXO安装创建博客/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/java/idea 配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/15/node/HEXO安装创建博客/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/java/jvm内存模型/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/java/idea 配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/git/git 命令/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/DB2/DB2使用/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

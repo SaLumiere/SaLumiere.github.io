@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-node/HEXO安装创建博客" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/node/HEXO安装创建博客/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.539Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HEXO安装创建博客"><a href="#HEXO安装创建博客" class="headerlink" title="HEXO安装创建博客"></a>HEXO安装创建博客</h1><ol>
+<li>安装node环境，此处不再介绍</li>
+<li>npm install -g hexo</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/node/HEXO安装创建博客/" data-id="cjoi4p7fh000cgktq6r1dn82o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java/jvm内存模型" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/java/jvm内存模型/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.530Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>jvm内存模型</p>
+<p>​    JVM内存模型</p>
+<p>Java代码是运行在Java虚拟机(JVM)上的，Java虚拟机通过解释执行（解释器）或编译执行（编译器）来完成。</p>
+<p>Java内存模型分为5个部分：方法区（Method Area），Java堆（Heap），Java栈（VM Stack），本地方法栈（Native Method Stack），程序计数器（PC 寄存器）</p>
+<p><img src="http://gityuan.com/images/jvm/jvm_memory_1.png" alt="img">（图片来源：<a href="http://gityuan.com/images/jvm/jvm_memory_1.png）" target="_blank" rel="noopener">http://gityuan.com/images/jvm/jvm_memory_1.png）</a></p>
+<p>线程共享区：</p>
+<p>方法区（Method Area）：方法区是各个线程共享的区域，存放类信息，常量，静态常量，编译器编译后的代码等信息。</p>
+<p>Java堆（Heap）：Java堆也是线程共享区域，类的实例存放在这里，一个系统会产生很多Java实例，因此Java堆的空间是最大的，如果Java堆的空间不足，就会抛出OutOfMemoryError异常。</p>
+<p>线程私有区：</p>
+<p>Java栈（VM Stack）：线程私有区域，生命周期与线程相同，一个线程对应一个Java栈，每执行一个方法就会向栈里压一个元素，这个元素叫“栈帧”，栈帧中包含了方法中保存了该方法调用的参数、局部变量和返回地址等信息，如果栈空间不足了就会抛出StackOverflowError异常。</p>
+<p>本地方法栈（Native Method Stack）：和Java栈类似，本地方法栈是用来执行本地方法的，存放的方法调用本地方法接口，最终调用本地方法库，实现与操作系统，硬件交互的目的。</p>
+<p>程序计数器：这里对应的类以及加载，实例对象，方法，静态变量去了该去的地方，那么问题来了，程序该怎么执行，哪个方法先执行，哪个方法后执行，这些指令执行的顺序就是PC寄存器在管，它的作用就是控制程序指令的执行顺序。</p>
+</li>
+<li><p>类加载过程</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/java/jvm内存模型/" data-id="cjoi4p7fc000bgktqci7g4df7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java/idea 配置" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/java/idea 配置/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.527Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="idea-配置"><a href="#idea-配置" class="headerlink" title="idea 配置"></a>idea 配置</h2><ol>
+<li><p>maven 配置    </p>
+<ol>
+<li>file &gt; Settings 打开配置页面，在搜索框搜索 maven</li>
+</ol>
+</li>
+</ol>
+<p>   <img src="C:\Users\13441\AppData\Roaming\Typora\typora-user-images\1542248266764.png" alt="1542248266764"></p>
+<ol start="2">
+<li>配置maven 安装路径，setting文件，及本地仓库地址</li>
+</ol>
+<p><img src="C:\Users\13441\AppData\Roaming\Typora\typora-user-images\1542248436096.png" alt="1542248436096"></p>
+<p>3.配置默认maven ，不然每次打开新的idea都需要配置maven</p>
+<p><img src="C:\Users\13441\AppData\Roaming\Typora\typora-user-images\1542248861782.png" alt="1542248861782"></p>
+<ol start="2">
+<li>idea 工作台设置<ol>
+<li>字体设置<br>file &gt;setting &gt; 输入font搜索</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/java/idea 配置/" data-id="cjoi4p7fa000agktqcu3goox8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git/git 命令" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/git/git 命令/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.519Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h1><ol>
+<li>git clone 下载代码</li>
+<li>git status 查看状态</li>
+<li>git add 加入staged</li>
+<li>git commit -m 提交</li>
+<li>git log 操作日志</li>
+<li>cat 文件名 打开文件</li>
+<li>v 文件名 编辑文件</li>
+<li>git reset 版本号  回退版本</li>
+<li>git tag -a v0.1 -m 新增版本</li>
+<li>git checkout  选择分支</li>
+<li>git remote 查看地址</li>
+<li>git push 提交代码到仓库</li>
+<li>git remote –help  查看帮助</li>
+</ol>
+<p>git config –global user.name “你的用户名”<br>git config –global user.email “你的邮箱”</p>
+<p> 方法2：修改.gitconfig文件</p>
+<pre><code>路径: C:\Users\你的用户名\.gitconfig 
+</code></pre><p>生成ssh key</p>
+<h2 id="输入-ssh-keygen-t-rsa-C-“你的邮箱”"><a href="#输入-ssh-keygen-t-rsa-C-“你的邮箱”" class="headerlink" title="输入: ssh-keygen -t rsa -C “你的邮箱”"></a>输入: ssh-keygen -t rsa -C “你的邮箱”</h2><p>方法1: 输入 clip &lt; ~/.ssh/id_rsa.pub   会自动</p>
+<p>复制ssh key，可以直接粘贴</p>
+<p>  方法2:在c/Users/Administrator/.ssh/id_rsa)文件找到直接复制</p>
+<p>​       </p>
+<p>连接github</p>
+<p>打开GitHub 进入setting找到ssh key并新建</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/git/git 命令/" data-id="cjoi4p7f20009gktqo3tgzucx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DB2/DB2使用" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/DB2/DB2使用/" class="article-date">
+  <time datetime="2018-11-15T05:02:59.511Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="DB2使用"><a href="#DB2使用" class="headerlink" title="DB2使用"></a>DB2使用</h1><ul>
+<li><p>数据库创建</p>
+<ol>
+<li>打开管理窗口，输入db2start,启动db2数据库</li>
+</ol>
+<p><img src="C:\Users\13441\AppData\Roaming\Typora\typora-user-images\1541731274737.png" alt="1541731274737"></p>
+<p>2.db2 create database 数据库名 创建数据库</p>
+</li>
+<li><p>数据库连接</p>
+<ol>
+<li>db2 connect to 数据库名</li>
+</ol>
+</li>
+<li><p>数据库删除</p>
+<ol>
+<li>db2 drop database SLPORTAL</li>
+</ol>
+</li>
+<li><p>错误处理</p>
+<ol>
+<li><p>DB2 SQL Error: SQLCODE=-204, SQLSTATE=42704” when connecting to new Controller DB<br>解决办法：<a href="http://www-01.ibm.com/support/docview.wss?uid=swg21613531" target="_blank" rel="noopener">http://www-01.ibm.com/support/docview.wss?uid=swg21613531</a></p>
+</li>
+<li><p>创建表时出现下列错误，</p>
+<p>[Error Code: -286, SQL State: 42727]  DB2 SQL Error: SQLCODE=-286, SQLSTATE=42727, SQLERRMC=8192;DB2ADMIN, DRIVER=4.13.127</p>
+<p>解决办法：<a href="https://www-01.ibm.com/support/docview.wss?uid=swg21414318" target="_blank" rel="noopener">https://www-01.ibm.com/support/docview.wss?uid=swg21414318</a></p>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/15/DB2/DB2使用/" data-id="cjoi4p7ep0008gktqmat1jghn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/15/node/HEXO安装创建博客/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/java/jvm内存模型/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/java/idea 配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/git/git 命令/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/DB2/DB2使用/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
